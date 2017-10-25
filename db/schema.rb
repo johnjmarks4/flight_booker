@@ -14,12 +14,12 @@ ActiveRecord::Schema.define(version: 20171025214812) do
 
   create_table "airports", force: :cascade do |t|
     t.string "name"
-    t.integer "home_id"
-    t.integer "destination_id"
+    t.integer "incoming_flight_id"
+    t.integer "outgoing_flight_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["destination_id"], name: "index_airports_on_destination_id"
-    t.index ["home_id"], name: "index_airports_on_home_id"
+    t.index ["incoming_flight_id"], name: "index_airports_on_incoming_flight_id"
+    t.index ["outgoing_flight_id"], name: "index_airports_on_outgoing_flight_id"
   end
 
   create_table "flights", force: :cascade do |t|

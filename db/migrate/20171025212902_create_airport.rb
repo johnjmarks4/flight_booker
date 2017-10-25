@@ -2,8 +2,8 @@ class CreateAirport < ActiveRecord::Migration[5.1]
   def change
     create_table :airports do |t|
       t.string :name
-      t.references :home
-      t.references :destination
+      t.references :incoming_flight
+      t.references :outgoing_flight
 
       t.timestamps
     end
