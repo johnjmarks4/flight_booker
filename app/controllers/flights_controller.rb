@@ -7,6 +7,8 @@ class FlightsController < ApplicationController
   end
 
   def index
+    @airports = Airport.all
+    
     if !session[:flight].nil?
       @flight = session[:flight]
     else

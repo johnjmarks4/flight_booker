@@ -1,7 +1,14 @@
 <form action="/flights/index" method="get">
-  From: <input type="text" name="from">
-  To:   <input type="text" name="to">
-  <input type="submit" value="Submit">
+  From: <select name="from">
+    <%= @airports.each do |airport| %>
+      <option value="<%= airport.id %>"><%= airport.name %></option>
+    <% end %>
+  </select>
+  To: <select name="to">
+    <%= @airports.each do |airport| %>
+      <option value="<%= airport.id %>"><%= airport.name %></option>
+    <% end %>
+  </select>
 </form>
 
 <p><%= print @flight %><p>
