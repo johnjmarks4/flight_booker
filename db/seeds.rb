@@ -1,8 +1,8 @@
-ohare = Airport.create(id: 1, name: "O'hare")
+ohare = Airport.create(id: 1, name: "Ohare")
 
-jfk = Airport.create(id: 2, name: "JFK")
+jfk = Airport.create(id: 2, name: "Jfk")
 
-dallas_fortworth = Airport.create(id: 3, name: "Dallas-Fortworth")
+dallas_fortworth = Airport.create(id: 3, name: "Dallas-fortworth")
 
 flight1 = ohare.outgoing_flights.create(id: 1, destination_id: 2, duration: 2)
 

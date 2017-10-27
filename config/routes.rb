@@ -4,4 +4,6 @@ Rails.application.routes.draw do
 
   get 'flights/index' => 'flights#index'
 
+  post 'flights/index' => 'flights#index'
+
 end

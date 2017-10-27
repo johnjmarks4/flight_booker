@@ -23,4 +23,10 @@ class FlightTest < ActiveSupport::TestCase
     @flight = home.outgoing_flights.new(destination_id: 2, duration: 2)
     assert @flight.valid?
   end
+
+  test "search_flight" do
+    @flight = Flight.search_flights("Ohare", "Jfk") 
+    assert_equal 1, @flight.home_id
+    assert_equal 2, @flight.destination_id
+  end
 end
