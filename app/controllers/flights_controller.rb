@@ -8,7 +8,10 @@ class FlightsController < ApplicationController
 
   def index
     @airports = Airport.all
-    
+
+    dates = Flight.find_time
+    @days, @months = dates[0], dates[1]
+
     if !session[:flight].nil?
       @flight = session[:flight]
     else

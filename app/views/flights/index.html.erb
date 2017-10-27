@@ -1,12 +1,33 @@
 <form action="/flights/index" method="get">
+  
   From: <select name="from">
     <%= @airports.each do |airport| %>
       <option value="<%= airport.id %>"><%= airport.name %></option>
     <% end %>
   </select>
+
   To: <select name="to">
     <%= @airports.each do |airport| %>
       <option value="<%= airport.id %>"><%= airport.name %></option>
+    <% end %>
+  </select>
+
+  Passengers: <select name="passengers">
+    <option value=1>1</option>
+    <option value=2>2</option>
+    <option value=3>3</option>
+    <option value=4>4</option>
+  </select>
+
+  Day: <select name="day">
+    <%= @days.each do |day| %>
+      <option value="<%= day %>"><%= day %></option>
+    <% end %>
+  </select>
+
+  Month: <select name="month">
+    <%= @months.each do |month| %>
+      <option value="<%= month %>"><%= month %></option>
     <% end %>
   </select>
 </form>
