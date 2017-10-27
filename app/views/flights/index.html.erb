@@ -30,6 +30,14 @@
       <option value="<%= month %>"><%= month %></option>
     <% end %>
   </select>
+
+  Year: <select name="year">
+    <%= @years.each do |year| %>
+      <option value="<%= year %>"><%= year %></option>
+    <% end %>
+  </select>
+
+  <button>Submit</button>
 </form>
 
-<p><%= print @flight %><p>
+<p><%= @flight %><p>

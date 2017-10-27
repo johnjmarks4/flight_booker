@@ -1,0 +1,16 @@
+flight1:
+  id: 1
+  home_id: 1
+  destination_id: 2
+  duration: 2
+
+flight2:
+  id: 2
+  home_id: 2
+  destination_id: 3
+
+flight3:
+  id: 3
+  home_id: 3
+  destination_id: 1
+  time: <%= Time.parse("18/01/20").strftime("%Y-%m-%d") %>
