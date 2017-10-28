@@ -40,12 +40,13 @@
   <button>Submit</button>
 </form>
 
-<form action="/flights/index" method="get" >
+<form action="/bookings/new" method="get" >
   <% if !@flights.nil? %>
     <% @flights.each_with_index do |flight, i| %>
-      <input type="radio" value="<%= flight %>">
+      <input type="radio" value="<%= flight["id"] %>">
         From: <%= @homes[i] %> To: <%= @destinations[i] %> 
       </input>
+      <input type="hidden"><%= puts flight["passengers"] %></input>
     <% end %>
   <% end %>
 </form>
