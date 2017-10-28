@@ -14,17 +14,15 @@ class FlightsController < ApplicationController
     end
 
     @days, @months, @years = session[:dates][0], session[:dates][1], session[:dates][2]
+    @homes, @destinations = [], []
+    Flight.all.each { |flight| @homes << Airport.find(flight.home_id).name }
+    Flight.all.each { |flight| @destinations << Airport.find(flight.destination_id).name }
 
     if !session[:flights].nil?
       @flights = session[:flights]
     else
-      #puts "ran1"
-      #puts params[:from].nil?
-      #puts [params[:from], params[:to], params[:day], params[:month], params[:year]]
       if !params[:from].nil? && !params[:to].nil? && !params[:day].nil? && !params[:month].nil? && !params[:year].nil?
         @flights = Flight.search_flights(params[:from], params[:to], params[:day], params[:month], params[:year])
-        puts "ran"
-        puts @flights.inspect
       end
 
       if !@flights.nil?

@@ -42,8 +42,10 @@
 
 <form action="/flights/index" method="get" >
   <% if !@flights.nil? %>
-    <% @flights.each do |flight| %>
-      <input type="radio" value="<%= flight %>"><%= flight %></input>
+    <% @flights.each_with_index do |flight, i| %>
+      <input type="radio" value="<%= flight %>">
+        From: <%= @homes[i] %> To: <%= @destinations[i] %> 
+      </input>
     <% end %>
   <% end %>
 </form>
