@@ -15,16 +15,21 @@ class FlightsController < ApplicationController
 
     @days, @months, @years = session[:dates][0], session[:dates][1], session[:dates][2]
 
-    if !session[:flight].nil?
-      @flight = session[:flight]
+    if !session[:flights].nil?
+      @flights = session[:flights]
     else
+      #puts "ran1"
+      #puts params[:from].nil?
+      #puts [params[:from], params[:to], params[:day], params[:month], params[:year]]
       if !params[:from].nil? && !params[:to].nil? && !params[:day].nil? && !params[:month].nil? && !params[:year].nil?
-        @flight = Flight.search_flights(params[:from], params[:to], params[:day], params[:month], params[:year])
+        @flights = Flight.search_flights(params[:from], params[:to], params[:day], params[:month], params[:year])
+        puts "ran"
+        puts @flights.inspect
+      end
 
-        if !@flight.nil?
-          session[:flight] = @flight
-          redirect_to flights_index_path(@flight)
-        end
+      if !@flights.nil?
+        session[:flights] = @flights
+        redirect_to flights_index_path(@flights)
       end
     end
   end

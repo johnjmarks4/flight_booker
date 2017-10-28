@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20171027035045) do
     t.integer "destination_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "time"
+    t.string "time"
     t.integer "duration"
     t.integer "passengers"
     t.index ["destination_id"], name: "index_flights_on_destination_id"
