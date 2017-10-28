@@ -40,4 +40,10 @@
   <button>Submit</button>
 </form>
 
-<p><%= @flight %><p>
+<form action="/flights/index" method="get" >
+  <% if !@flights.nil? %>
+    <% @flights.each do |flight| %>
+      <input type="radio" value="<%= flight %>"><%= flight %></input>
+    <% end %>
+  <% end %>
+</form>
