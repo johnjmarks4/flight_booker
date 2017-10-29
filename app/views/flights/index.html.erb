@@ -46,7 +46,7 @@
       <input type="radio" value="<%= flight["id"] %>">
         From: <%= @homes[i] %> To: <%= @destinations[i] %> 
       </input>
-      <input type="hidden"><%= puts flight["passengers"] %></input>
+      <input type="hidden"><% flight["passengers"] %></input>
     <% end %>
   <% end %>
 </form>

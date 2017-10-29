@@ -18,7 +18,6 @@ class FlightsController < ApplicationController
 
     if !session[:flights].nil?
       @flights = session[:flights]
-      @flights.each { |flight| puts flight.inspect }
       @flights.each { |flight| @homes << Airport.find(flight["home_id"]).name }
       @flights.each { |flight| @destinations << Airport.find(flight["destination_id"]).name }
     else
