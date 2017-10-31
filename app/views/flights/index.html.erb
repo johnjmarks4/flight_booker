@@ -43,10 +43,16 @@
 <form action="/bookings/new" method="get" >
   <% if !@flights.nil? %>
     <% @flights.each_with_index do |flight, i| %>
-      <input type="radio" value="<%= flight["id"] %>">
+      <input type="radio" value="<%= flight["id"] %>" name="flight_id">
         From: <%= @homes[i] %> To: <%= @destinations[i] %> 
       </input>
-      <input type="hidden"><% flight["passengers"] %></input>
+      <input type="hidden" value="<%= flight["passengers"] %>" name="passengers"></input>
+      <input type="hidden" value="<%= params["day"] %>" name="day"></input>
+      <input type="hidden" value="<%= params["month"] %>" name="month"></input>
+      <input type="hidden" value="<%= params["year"] %>" name="year"></input>
+      <input type="hidden" value="<%= params["from"] %>" name="from"></input>
+      <input type="hidden" value="<%= params["to"] %>" name="to"></input>
+      <input type="submit"></input>
     <% end %>
   <% end %>
 </form>

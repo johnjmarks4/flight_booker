@@ -4,6 +4,7 @@ class FlightsController < ApplicationController
   end
 
   def create
+    @passenger = Passenger.new(params)
   end
 
   def index

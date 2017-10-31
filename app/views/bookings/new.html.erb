@@ -1,2 +1,10 @@
-<h1>Bookings#new</h1>
-<p>Find me in app/views/bookings/new.html.erb</p>
+<form name="new_passenger" action="/bookings/create" method="post">
+  <input name="date" value="<%= @date %>"></input>
+  From: <input name="from" value="<%= @from_airport %>"><%= @from_airport %></input>
+  To:   <input name="to" value="<%= @to_airport %>"><%= @to_airport %></input>
+  Flight no.: <input name="flight_id" value="<%= @flight_id %>"><%= @flight_id %></input>
+
+  Name:  <input type="text" name="name"></input>
+  Email: <input type="text" name="email"></input>
+  <input type="submit"></input>
+</form>
