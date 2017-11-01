@@ -8,7 +8,8 @@ class FlightsController < ApplicationController
   end
 
   def index
-    @airports = Airport.all
+    @airport_options = Airport.all.map { |a| [ a.name, a.id ] }
+    @passengers = { 1 => 1, 2 => 2, 3 => 3, 4 => 4 }
 
     if session[:dates].nil?
       session[:dates] = Flight.find_time

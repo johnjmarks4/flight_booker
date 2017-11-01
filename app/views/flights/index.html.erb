@@ -1,58 +1,29 @@
-<form action="/flights/index" method="get">
-  
-  From: <select name="from">
-    <%= @airports.each do |airport| %>
-      <option value="<%= airport.id %>"><%= airport.name %></option>
-    <% end %>
-  </select>
+<%= form_tag("/flights/index", method: "get") do %>
 
-  To: <select name="to">
-    <%= @airports.each do |airport| %>
-      <option value="<%= airport.id %>"><%= airport.name %></option>
-    <% end %>
-  </select>
+  From:       <%= select_tag(:from, options_for_select(@airport_options)) %>
+  To:         <%= select_tag(:to, options_for_select(@airport_options)) %>
+  Passengers: <%= select_tag(:passenger_number, options_for_select(@passengers)) %>
+  Day:        <%= select_tag(:day, options_for_select(@days)) %>
+  Month:      <%= select_tag(:month, options_for_select(@months)) %>
+  Year:       <%= select_tag(:year, options_for_select(@years)) %>
 
-  Passengers: <select name="passengers">
-    <option value=1>1</option>
-    <option value=2>2</option>
-    <option value=3>3</option>
-    <option value=4>4</option>
-  </select>
+  <%= submit_tag("Submit") %>
+<% end %>
 
-  Day: <select name="day">
-    <%= @days.each do |day| %>
-      <option value="<%= day %>"><%= day %></option>
-    <% end %>
-  </select>
-
-  Month: <select name="month">
-    <%= @months.each do |month| %>
-      <option value="<%= month %>"><%= month %></option>
-    <% end %>
-  </select>
-
-  Year: <select name="year">
-    <%= @years.each do |year| %>
-      <option value="<%= year %>"><%= year %></option>
-    <% end %>
-  </select>
-
-  <button>Submit</button>
-</form>
-
-<form action="/bookings/new" method="get" >
+<%= form_tag("/bookings/new", method: "get") do %>
   <% if !@flights.nil? %>
+  
     <% @flights.each_with_index do |flight, i| %>
       <input type="radio" value="<%= flight["id"] %>" name="flight_id">
         From: <%= @homes[i] %> To: <%= @destinations[i] %> 
       </input>
-      <input type="hidden" value="<%= flight["passengers"] %>" name="passengers"></input>
-      <input type="hidden" value="<%= params["day"] %>" name="day"></input>
-      <input type="hidden" value="<%= params["month"] %>" name="month"></input>
-      <input type="hidden" value="<%= params["year"] %>" name="year"></input>
-      <input type="hidden" value="<%= params["from"] %>" name="from"></input>
-      <input type="hidden" value="<%= params["to"] %>" name="to"></input>
-      <input type="submit"></input>
     <% end %>
+
+    <%= hidden_field_tag(:day, params["day"]) %>
+    <%= hidden_field_tag(:month, params["month"]) %>
+    <%= hidden_field_tag(:year, params["year"]) %>
+    <%= hidden_field_tag(:from, params["from"]) %>
+    <%= hidden_field_tag(:to, params["to"]) %>
+    <%= submit_tag "Submit" %>
   <% end %>
-</form>
+<% end %>
