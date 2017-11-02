@@ -3,8 +3,7 @@ class BookingsController < ApplicationController
     @to_airport = Airport.find_name(params[:to])
     @from_airport = Airport.find_name(params[:from])
     @flight = Flight.find(params[:flight_id])
-    @date = "#{params[:month]}/#{params[:day]}/#{params[:year]}"
-    @bookings = @flight.bookings
+    @date = params[:date]
   end
 
   def create

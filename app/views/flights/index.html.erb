@@ -1,11 +1,9 @@
 <%= form_tag("/flights/index", method: "get") do %>
 
-  From:       <%= select_tag(:from, options_for_select(@airport_options)) %>
-  To:         <%= select_tag(:to, options_for_select(@airport_options)) %>
-  Passengers: <%= select_tag(:passenger_number, options_for_select(@passengers)) %>
-  Day:        <%= select_tag(:day, options_for_select(@days)) %>
-  Month:      <%= select_tag(:month, options_for_select(@months)) %>
-  Year:       <%= select_tag(:year, options_for_select(@years)) %>
+  From:           <%= select_tag(:from, options_for_select(@airport_options)) %>
+  To:             <%= select_tag(:to, options_for_select(@airport_options)) %>
+  Passengers:     <%= select_tag(:passenger_number, options_for_select(@passengers)) %>
+  Departure date: <%= select_tag(:date, options_for_select(@departure_dates)) %>
 
   <%= submit_tag("Submit") %>
 <% end %>
@@ -19,9 +17,7 @@
       From <%= route[0] %>     
       to   <%= route[1] %><br>
 
-      <%= hidden_field_tag(:day, params["day"]) %>
-      <%= hidden_field_tag(:month, params["month"]) %>
-      <%= hidden_field_tag(:year, params["year"]) %>
+      <%= hidden_field_tag(:date, params[:date]) %>
       <%= hidden_field_tag(:from, params["from"]) %>
       <%= hidden_field_tag(:to, params["to"]) %>
     <% end %>

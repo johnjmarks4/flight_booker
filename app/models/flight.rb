@@ -4,20 +4,18 @@ class Flight < ApplicationRecord
   belongs_to :home, :class_name => "Airport"
   belongs_to :destination, :class_name => "Airport"
 
-  def self.search_flights(origin, dest, day, month, year)
+  def self.search_flights(origin, dest, date)
     from_airport = Airport.find_by(id: origin)
-    to_airport = Airport.find_by(id: dest)
-
-    date = Time.parse("{#{year}/#{month}/#{day}").strftime("%Y-%m-%d")
+    to_airport = Airport.find_by(id: dest)    
 
     self.where(home_id: from_airport.id, destination_id: to_airport.id, time: date).all
   end
 
   def self.find_time
-    dates = self.where("time > ?", DateTime.now).all
-    days = dates.map { |date| date.time[8..9] }
-    months = dates.map { |date| date.time[5..6] }
-    years = dates.map { |date| date.time[2..3] }
-    [days, months, years]
+    dates = []
+    self.where("time > ?", DateTime.now).all.each do |flight|
+      dates << flight.time
+    end
+    dates
   end
 end

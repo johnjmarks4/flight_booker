@@ -10,6 +10,8 @@ flight2 = jfk.outgoing_flights.create(id: 2, destination_id: 3)
 
 flight3 = dallas_fortworth.outgoing_flights.create(id: 3, destination_id: 1, time: Time.parse("18/01/20").strftime("%Y-%m-%d"), passenger_number: 1)
 
+flight4 = dallas_fortworth.outgoing_flights.create(id: 4, destination_id: 1, time: Time.parse("18/01/20").strftime("%Y-%m-%d"), passenger_number: 1)
+
 passenger1 = Passenger.create(id: 1, name: "John", email: "johnjmarks4@gmail.com")
 
 passenger2 = Passenger.create(id: 2, name: "Bill", email: "Bill@yahoo.com")
