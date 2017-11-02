@@ -15,21 +15,17 @@ class FlightsController < ApplicationController
       session[:dates] = Flight.find_time
     end
 
-    @days, @months, @years = session[:dates][0], session[:dates][1], session[:dates][2]
-    @homes, @destinations = [], []
+    @days = session[:dates][0]
+    @months = session[:dates][1]
+    @years = session[:dates][2]
+    @routes = []
 
-    if !session[:flights].nil?
-      @flights = session[:flights]
-      @flights.each { |flight| @homes << Airport.find(flight["home_id"]).name }
-      @flights.each { |flight| @destinations << Airport.find(flight["destination_id"]).name }
-    else
-      if !params[:from].nil? && !params[:to].nil? && !params[:day].nil? && !params[:month].nil? && !params[:year].nil?
-        @flights = Flight.search_flights(params[:from], params[:to], params[:day], params[:month], params[:year])
-      end
-
-      if !@flights.nil?
-        session[:flights] = @flights
-        redirect_to flights_index_path(@flights)
+    if !params[:from].nil? && !params[:to].nil? && !params[:day].nil? && !params[:month].nil? && !params[:year].nil?
+      @flights = Flight.search_flights(params[:from], params[:to], params[:day], params[:month], params[:year])
+      @flights.each do |flight|
+        home = Airport.find(flight["home_id"]).name
+        destination = Airport.find(flight["destination_id"]).name
+        @routes << [home, destination, flight["id"]]
       end
     end
   end

@@ -1,10 +1,21 @@
-<form name="new_passenger" action="/bookings/create" method="post">
-  <input name="date" value="<%= @date %>"></input>
-  From: <input name="from" value="<%= @from_airport %>"><%= @from_airport %></input>
-  To:   <input name="to" value="<%= @to_airport %>"><%= @to_airport %></input>
-  Flight no.: <input name="flight_id" value="<%= @flight_id %>"><%= @flight_id %></input>
+Date:       <%= @date %><br>
+From:       <%= @from_airport %><br>
+To:         <%= @to_airport %><br>
+Flight no.: <%= @flight.id %>
 
-  Name:  <input type="text" name="name"></input>
-  Email: <input type="text" name="email"></input>
-  <input type="submit"></input>
-</form>
+<%= form_for :flights, name: "flight_info", url: "/bookings/create", method: "post" do |f| %>
+
+  <% @flight.passenger_number.times do %>
+    <%= f.fields_for @flight.passengers.build do |passenger| %>
+      Name:   <%= passenger.text_field(:name) %>
+      Email:  <%= passenger.text_field(:email) %>
+      
+      <%= hidden_field_tag(:flight_id, @flight.id) %>
+      <%= hidden_field_tag(:from, @from_airport) %>
+      <%= hidden_field_tag(:to, @to_airport) %>
+      <%= hidden_field_tag(:date, @date) %>
+    <% end %>
+  <% end %>
+
+  <%= f.submit "Submit" %>
+<% end %>

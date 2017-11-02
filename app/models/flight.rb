@@ -3,8 +3,6 @@ class Flight < ApplicationRecord
   has_many :passengers, :through => :bookings, :foreign_key => :passenger_id
   belongs_to :home, :class_name => "Airport"
   belongs_to :destination, :class_name => "Airport"
-  has_many :passengers, :through => :booking
-  has_many :bookings, :dependent => :destroy, :inverse_of => :passenger
 
   def self.search_flights(origin, dest, day, month, year)
     from_airport = Airport.find_by(id: origin)

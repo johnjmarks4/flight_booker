@@ -12,18 +12,21 @@
 
 <%= form_tag("/bookings/new", method: "get") do %>
   <% if !@flights.nil? %>
-  
-    <% @flights.each_with_index do |flight, i| %>
-      <input type="radio" value="<%= flight["id"] %>" name="flight_id">
-        From: <%= @homes[i] %> To: <%= @destinations[i] %> 
-      </input>
-    <% end %>
 
-    <%= hidden_field_tag(:day, params["day"]) %>
-    <%= hidden_field_tag(:month, params["month"]) %>
-    <%= hidden_field_tag(:year, params["year"]) %>
-    <%= hidden_field_tag(:from, params["from"]) %>
-    <%= hidden_field_tag(:to, params["to"]) %>
+    <p>
+    <% @routes.each do |route| %>
+      <%= radio_button_tag(:flight_id, route[2]) %>
+      From <%= route[0] %>     
+      to   <%= route[1] %><br>
+
+      <%= hidden_field_tag(:day, params["day"]) %>
+      <%= hidden_field_tag(:month, params["month"]) %>
+      <%= hidden_field_tag(:year, params["year"]) %>
+      <%= hidden_field_tag(:from, params["from"]) %>
+      <%= hidden_field_tag(:to, params["to"]) %>
+    <% end %>
+    </p>
+
     <%= submit_tag "Submit" %>
   <% end %>
 <% end %>
