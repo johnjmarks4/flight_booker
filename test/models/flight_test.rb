@@ -25,7 +25,7 @@ class FlightTest < ActiveSupport::TestCase
   end
 
   test "search_flight" do
-    @flights = Flight.search_flights(3, 1, "20", "01", "18")
+    @flights = Flight.search_flights(3, 1, "18/01/20")
     @flights.each do |flight|
       assert_equal 3, flight.home_id
       assert_equal 1, flight.destination_id

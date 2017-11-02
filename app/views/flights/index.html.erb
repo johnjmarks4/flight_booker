@@ -15,7 +15,9 @@
     <% @routes.each do |route| %>
       <%= radio_button_tag(:flight_id, route[2]) %>
       From <%= route[0] %>     
-      to   <%= route[1] %><br>
+      to   <%= route[1] %> --
+      No.  <%= route[2] %>
+      <br>
 
       <%= hidden_field_tag(:date, params[:date]) %>
       <%= hidden_field_tag(:from, params["from"]) %>
