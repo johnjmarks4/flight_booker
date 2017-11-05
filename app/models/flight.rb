@@ -5,10 +5,7 @@ class Flight < ApplicationRecord
   belongs_to :destination, :class_name => "Airport"
 
   def self.search_flights(origin, dest, date)
-    from_airport = Airport.find_by(id: origin)
-    to_airport = Airport.find_by(id: dest)    
-
-    self.where(home_id: from_airport.id, destination_id: to_airport.id, time: date).all
+    self.where(home_id: origin.to_i, destination_id: dest.to_i, time: date).all
   end
 
   def self.find_time
