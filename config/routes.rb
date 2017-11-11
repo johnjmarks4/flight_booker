@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  resources :users
+
+  get 'login' => 'users#new'
+  
   get 'bookings/new'
 
   root 'flights#index'
